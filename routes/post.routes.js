@@ -56,7 +56,7 @@ postRouter.get("/:id",async (req, res) => {
     const { id } = req.params
     try {
 
-        const data = await PostModel.findOne({_id: id})
+        const data = await PostModel.findOne({id: id})
         res.status(200).send( data )
 
     } catch (err) {
