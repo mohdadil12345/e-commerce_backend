@@ -50,9 +50,42 @@ postRouter.get("/",  async (req, res) => {
 })
 
 
+// single data
+postRouter.get("/:id",async (req, res) => {
+
+    const { id } = req.params
+    try {
+
+        const data = await PostModel.findOne({_id: id})
+        res.status(200).send( data )
+
+    } catch (err) {
+        res.status(400).send({ "error": err.message })
+    }
+
+})
 
 
 
+
+// delete
+
+
+postRouter.delete("/delete/:movieID", async (req, res) => {
+    const { movieID } = req.params
+
+    try {
+
+        await PostModel.findByIdAndDelete({ _id: movieID })
+        res.status(200).send({ "msg": `The product with ID:${movieID} has been deleted` })
+
+
+
+    } catch (err) {
+        res.status(400).send({ "error": message })
+    }
+
+})
 
 
 
